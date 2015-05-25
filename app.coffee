@@ -1,3 +1,4 @@
+http       = require 'http'
 express    = require 'express'
 mongoose   = require 'mongoose'
 bodyParser = require 'body-parser'
@@ -11,8 +12,8 @@ app.set 'port', process.env.PORT or 3000
 
 # connect to the db, and make the schema available
 app.set 'storage-uri',
-    process.env.MONGOHQ_URL or
     process.env.MONGOLAB_URI or
+    process.env.MONGOHQ_URL or
     'mongodb://localhost/items'
 
 # include bodyParser middleware that parses request body so the parameters
@@ -21,10 +22,10 @@ app.set 'storage-uri',
 # parse application/json
 app.use bodyParser.json()
 
-mongoose.connect app.get('storage-uri'),
-    {db: {safe: true}},
-    (err) ->
-        console.log "Mongoose - connection error: " + err if err?
+mongoose.connect app.get('storage-uri'), (err) ->
+    if err?
+        console.log "Mongoose - connection error: " + err
+    else
         console.log "Mongoose - connection OK"
 
 require './model/item'
