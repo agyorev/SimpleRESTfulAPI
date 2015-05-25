@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/agyorev/Simple-RESTful-API",
   "dependencies": {
+    "body-parser": "^1.12.4",
     "coffee-script": "^1.9.2",
     "express": "^4.12.4",
     "mongoose": "^4.0.3"
