@@ -1,0 +1,35 @@
+{
+  "name": "Simple-RESTful-API",
+  "version": "1.0.0",
+  "description": "A basic RESTful API using Express, MongoDB and CoffeeScript. Compatible with Heroku.",
+  "main": "index.js",
+  "scripts": {
+    "start": "coffee -w app.coffee",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:agyorev/Simple-RESTful-API.git"
+  },
+  "keywords": [
+    "rest",
+    "restful",
+    "api",
+    "express",
+    "nodejs",
+    "mongodb",
+    "mongoose",
+    "coffeescript"
+  ],
+  "author": "Aleksandar Gyorev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agyorev/Simple-RESTful-API/issues"
+  },
+  "homepage": "https://github.com/agyorev/Simple-RESTful-API",
+  "dependencies": {
+    "coffee-script": "^1.9.2",
+    "express": "^4.12.4",
+    "mongoose": "^4.0.3"
+  }
+}
