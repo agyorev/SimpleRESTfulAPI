@@ -2,6 +2,8 @@ express    = require 'express'
 mongoose   = require 'mongoose'
 bodyParser = require 'body-parser'
 
+items = require './controller/items'
+
 app = express()
 
 # set listening port
@@ -19,9 +21,6 @@ app.set 'storage-uri',
 # parse application/json
 app.use bodyParser.json()
 
-# parse application/x-www-form-urlencoded
-app.use bodyParser.urlencoded({extended: false})
-
 mongoose.connect app.get('storage-uri'),
     {db: {safe: true}},
     (err) ->
@@ -32,6 +31,13 @@ require './model/item'
 
 app.get '/', (req, res) ->
     res.send 'We are up and running!'
+
+# specify all necessary routes with their respective operations
+app.post     '/items',       items.create
+app.get      '/items',       items.retrieve
+app.get      '/items/:id',   items.retrieve
+app.put      '/items/:id',   items.update
+app.delete   '/items/:id',   items.delete
 
 server = app.listen app.get('port'), ->
     console.log "Listening on port #{app.get('port')}"

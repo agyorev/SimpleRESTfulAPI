@@ -1,5 +1,11 @@
-# ignore all node modules
+# all node modules
 node_modules/
 
-# ignore db folder
+# db folder
 items/
+
+# my notes
+notes.md
+
+# all log files
+*.log
