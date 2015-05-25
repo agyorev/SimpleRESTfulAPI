@@ -8,9 +8,9 @@ exports.create = (req, res) ->
     r = new Resource(fields)
     r.save (err, resource) ->
         if err?
-            res.sendStatus(500, {error: err})
+            res.sendStatus(500)
         else
-            res.sendStatus(resource)
+            res.status(200).json(resource)
 
 # receive the data for all or for a specific item
 exports.retrieve = (req, res) ->
@@ -19,17 +19,17 @@ exports.retrieve = (req, res) ->
     if req.params.id?
         Resource.findById req.params.id, (err, resource) ->
             if err?
-                res.sendStatus(500, {error: err})
+                res.sendStatus(500)
             else if resource?
-                res.sendStatus(resource)
+                res.status(200).json(resource)
             else
                 res.sendStatus(404)
     else
         Resource.find {}, (err, coll) ->
             if err?
-                res.sendStatus(500, {error: err})
+                res.sendStatus(500)
             else
-                res.sendStatus(coll)
+                res.status(200).json(coll)
 
 # update the data for a specific item
 exports.update = (req, res) ->
@@ -38,9 +38,9 @@ exports.update = (req, res) ->
 
     Resource.findByIdAndUpdate req.params.id, {$set: fields}, (err, resource) ->
         if err?
-            res.sendStatus(500, {error: err})
+            res.sendStatus(500)
         else if resource?
-            res.sendStatus(resource)
+            res.status(200).json(resource)
         else
             res.sendStatus(404)
 
@@ -50,7 +50,7 @@ exports.delete = (req, res) ->
 
     Resource.findByIdAndRemove req.params.id, (err, resource) ->
         if err?
-            res.sendStatus(500, {error: err})
+            res.sendStatus(500)
         else if resource?
             res.sendStatus(200)
         else
